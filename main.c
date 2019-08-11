@@ -17,21 +17,22 @@ int main()
     char ch;
     while(1)
     {
-        printf("enter your choice:\n 1.create \n 2.insert \n 3.delete \n 4.display \n");
+        printf("enter your choice:\n 1.create \n 2.insert \n 3.delete \n 4.display \n5.Exit\n");
         scanf("%d",&a);
         switch (a)
         {
             case 1: create_list();
-                break;
+		    break;
+                
             case 2:printf("enter your choice \n 1.insert in beginning \n 2.insert at end \n 3.insert in a position \n");
                 scanf("%d",&b);
                 switch(b)
                 {
-                    case 1:insert_big();
+                    case 1: insert_big();
                         break;
-                    case 2:insert_end();
+                    case 2: insert_end();
                         break;
-                    case 3:insert_bet();
+                    case 3: insert_bet();
                         break;
                     default:printf("wrong choice");
                 }
@@ -51,14 +52,9 @@ int main()
                 break;
             case 4:display();
                 break;
+	    case 5: exit(0);
             default:printf("wrong choice\n");
-        }
-            printf("do you want to continue\n");
-            scanf("%c",&ch);
-            if (ch=='y')
-                continue;
-           else
-                break;
+        }     
     }
     return 0;
 }
@@ -67,7 +63,7 @@ int main()
 void create_list()
 {
     int n,i;
-    struct node  *current = NULL, *new;
+    struct node  *current, *new;
     printf("enter the number of inputs");
     scanf("%d",&n);
     for(i=1;i<=n;i++)
@@ -133,26 +129,32 @@ void insert_end()
 //inserting at a position
 void insert_bet()
 {
-    int a=0,i,pos;
-    struct node  *new,*current=head;
-    new=(struct node *)malloc(sizeof(struct node));
-    printf("enter value");
-    scanf("%d",&new->data);
-    printf("enter the position");
-    scanf("%d",&pos);
+    int a=1,i,pos;
+    struct node  *new,*current;
+	
+    
+    current = head;
     while(current->next!=NULL)
     {
         current=current->next;
         a++;
-        if(a<pos)
+    }
+	printf("%d",a);
+	printf("enter the position");
+       scanf("%d",&pos);
+        if(pos>=2 && pos<a)
         {
+		new = (struct node*)malloc(sizeof(struct node));
+		printf("Enter value\n");
+   		 scanf("%d",&new->data);
             current=head;
-            for(i=1;i<=(pos-1);i++)
+            for(i=1;i<(pos-1);i++)
                 current=current->next;
+
             new->next=current->next;
             current->next=new;
         }
-    }
+    
 }
 
 //to display the result
@@ -161,8 +163,8 @@ void display()
     struct node  *current=head;
     while(current !=NULL)
     {
-        printf("%d",current->data);
+        printf("%d ",current->data);
         current=current->next;
     }
+	printf("\n");
 }
-
