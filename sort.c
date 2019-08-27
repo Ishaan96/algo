@@ -210,7 +210,8 @@ void quicksort(int arr[],int first,int last)
 		quicksort(arr,j+1,last);
 	}
 }
-
+//create partition and return j
+//first condition will be same in quick sort and recursion
 int count(int a[])
 {
 	int i,flag=0;
